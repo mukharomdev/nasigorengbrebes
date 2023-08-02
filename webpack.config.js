@@ -1,7 +1,7 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require('path');
 
-module.exports = {
+const config = {
   entry: {
   main: path.resolve(__dirname, './src/index.js'),
   },
@@ -59,4 +59,18 @@ module.exports = {
     },
   },
 
+};
+
+
+module.exports = (env, argv) => {
+  if (argv.hot) {
+    // Cannot use 'contenthash' when hot reloading is enabled.
+    config.output.filename = '[name].js';
+  }
+  if (argv.mode === 'development') {
+    config.devtool = 'source-map';
+    config.target = 'web';
+  }
+
+  return config;
 };
