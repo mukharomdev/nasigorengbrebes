@@ -46,3 +46,4 @@ jobs:
         with:
           github_token: ${{ secrets.CODE_GITHUB_TOKEN }}
           publish_branch: gh-pages  # default: gh-pages
+          keep_files: true
